@@ -24,6 +24,10 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 
+//Toda petición http get cuya ruta no coincida con las que haz configurado anteriormente, express la redirige al archivo index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'));
+  });
 
 
 // Escuchar peticiones
